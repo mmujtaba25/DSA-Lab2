@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
     const int size = 20;
-    int salArray[size];
+    int *salArray = new int[size];
 
     // Input salaries
     for (int i = 0; i < size; i++)
@@ -25,7 +25,9 @@ int main()
     {
         cout << salArray[i] << " ";
     }
-    
+
+    delete[] salArray;
+
     cout << endl;
     return 0;
 }
