@@ -16,10 +16,10 @@ namespace util
     {
         for (size_t i = 0; i < size; i++)
         {
+            // print ":" for NULL byte
             if (str[i] == '\0')
-            {
                 std::cout << ":";
-            }
+
             std::cout << str[i];
         }
         std::cout << "\n";
@@ -39,6 +39,10 @@ int main()
 
     std::cout << "Enter a string (max " << SIZE - 1 << " chars): ";
     std::cin >> str;
+
+    util::debug_print(str, SIZE);
+
+    std::cout << "\n:MIRRORING: \n\n";
 
     // mirror string
     for (size_t i = 0; i < util::floor(SIZE / 2); i++)
@@ -60,12 +64,11 @@ int main()
         }
     }
 
-    std::cout << "\n " << first_not_null << " : OFFSETTING: \n\n";
+    std::cout << "\n:" << first_not_null << ":OFFSETTING: \n\n";
 
     // start at first not NULL; offset each by first_not_null
     for (size_t i = 0; i < SIZE - first_not_null; i++)
     {
-        // str[i] = str[i + first_not_null];
         util::swap(str[i], str[i + first_not_null]);
         util::debug_print(str, SIZE);
     }
