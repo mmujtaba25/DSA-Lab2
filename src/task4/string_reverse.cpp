@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 namespace util
 {
@@ -27,7 +28,7 @@ namespace util
 
 int main()
 {
-    constexpr int SIZE = 51;
+    constexpr int SIZE = 11;
     char *str = new char[SIZE];
 
     // fill string with 0
@@ -59,16 +60,17 @@ int main()
         }
     }
 
+    std::cout << "\n " << first_not_null << " : OFFSETTING: \n\n";
+
     // start at first not NULL; offset each by first_not_null
-    for (size_t i = first_not_null; i < SIZE - first_not_null; i++)
+    for (size_t i = 0; i < SIZE - first_not_null; i++)
     {
-        str[i] = str[i + first_not_null];
+        // str[i] = str[i + first_not_null];
+        util::swap(str[i], str[i + first_not_null]);
+        util::debug_print(str, SIZE);
     }
 
-    for (size_t i = 0; i < SIZE; i++)
-    {
-        std::cout << str[i];
-    }
+    std::cout << str;
 
     return 0;
 }
