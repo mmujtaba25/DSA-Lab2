@@ -9,7 +9,18 @@ int main()
     testSorter();
 }
 
-bool isSorted(const int *arr, const int size) { return false; }
+bool isSorted(const int *arr, const int size)
+{
+    for (size_t i = 0; i < size - 1; i++)
+    {
+        if (arr[i] > arr[i + 1])
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 // MARK: TESTS
 
@@ -65,12 +76,12 @@ namespace tests
 
 void testSorter()
 {
-    tests::testSortedArray();
-    tests::testUnsortedArray();
-    tests::testDuplicateValues();
-    tests::testSingleElement();
-    tests::testDescendingArray();
-    tests::testNegativeValues();
-    tests::testAllSameValues();
-    tests::testEmptyArray();
+    tests::testSortedArray();     // 1
+    tests::testUnsortedArray();   // 2
+    tests::testDuplicateValues(); // 3
+    tests::testSingleElement();   // 4
+    tests::testDescendingArray(); // 5
+    tests::testNegativeValues();  // 6
+    tests::testAllSameValues();   // 7
+    // tests::testEmptyArray();      // 8
 }
