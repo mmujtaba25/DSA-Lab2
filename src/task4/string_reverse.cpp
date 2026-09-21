@@ -5,6 +5,33 @@ constexpr int DEBUG = false;
 
 namespace util
 {
+    void swap(char &a, char &b);
+    int floor(double value);
+    void debug_print(const char c);
+    void debug_print(const char *str, int size);
+}
+
+void reverse_string(char *str, const int size);
+void reverse_string_raw(char *str, const int size);
+
+int main()
+{
+    constexpr int SIZE = DEBUG ? 11 : 51; // one extra for NULL byte
+    char *str = new char[SIZE];
+
+    std::cout << "Enter a string (max " << SIZE - 1 << " chars): ";
+    std::cin.getline(str, SIZE);
+
+    reverse_string(str, SIZE);
+
+    std::cout << "Your string is reverse is: " << str << "\n\n";
+    delete[] str;
+
+    return 0;
+}
+
+namespace util
+{
     void swap(char &a, char &b)
     {
         a = a ^ b;
@@ -84,20 +111,4 @@ void reverse_string(char *str, const int size)
     str[size - null_at] = '\0';
 
     util::debug_print(str, size);
-}
-
-int main()
-{
-    constexpr int SIZE = DEBUG ? 11 : 51; // one extra for NULL byte
-    char *str = new char[SIZE];
-
-    std::cout << "Enter a string (max " << SIZE - 1 << " chars): ";
-    std::cin.getline(str, SIZE);
-
-    reverse_string(str, SIZE);
-
-    std::cout << "Your string is reverse is: " << str << "\n\n";
-    delete[] str;
-
-    return 0;
 }
