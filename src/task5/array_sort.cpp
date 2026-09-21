@@ -11,6 +11,9 @@ int main()
 
 bool isSorted(const int *arr, const int size)
 {
+    if (size == 0)
+        return false;
+
     for (size_t i = 0; i < size - 1; i++)
     {
         if (arr[i] > arr[i + 1])
@@ -83,5 +86,5 @@ void testSorter()
     tests::testDescendingArray(); // 5
     tests::testNegativeValues();  // 6
     tests::testAllSameValues();   // 7
-    // tests::testEmptyArray();      // 8
+    tests::testEmptyArray();      // 8
 }
