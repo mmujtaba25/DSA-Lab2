@@ -12,7 +12,7 @@ int main()
 bool isSorted(const int *arr, const int size)
 {
     if (size == 0)
-        return false;
+        return true;
 
     for (size_t i = 0; i < size - 1; i++)
     {
@@ -73,7 +73,7 @@ namespace tests
 
     void testEmptyArray()
     {
-        assert(isSorted({}, 0) == false);
+        assert(isSorted({}, 0) == true);
     }
 }
 
