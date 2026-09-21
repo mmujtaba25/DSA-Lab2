@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+constexpr int DEBUG = false;
+
 namespace util
 {
     void swap(char &a, char &b)
@@ -14,6 +16,9 @@ namespace util
 
     void debug_print(const char c)
     {
+        if (!DEBUG)
+            return;
+
         // print ":" for NULL byte
         if (c == '\0')
             std::cout << ":";
@@ -23,6 +28,9 @@ namespace util
 
     void debug_print(const char *str, int size)
     {
+        if (!DEBUG)
+            return;
+
         for (size_t i = 0; i < size; i++)
             debug_print(str[i]);
 
@@ -34,7 +42,8 @@ void reverse_string_raw(char *str, const int size)
 {
     util::debug_print(str, size);
 
-    std::cout << "\n:MIRRORING: \n\n";
+    if (DEBUG)
+        std::cout << "\n:MIRRORING: \n\n";
 
     // mirror string
     for (size_t i = 0; i < util::floor(size / 2); i++)
@@ -53,7 +62,6 @@ void reverse_string(char *str, const int size)
     int null_at = 0;
     for (int i = size - 1; i >= 0; i--)
     {
-        util::debug_print(str[i]);
         if (str[i] == '\0')
         {
             null_at = i + 1;
@@ -61,7 +69,8 @@ void reverse_string(char *str, const int size)
         }
     }
 
-    std::cout << "\n:" << null_at << ":OFFSETTING: \n\n";
+    if (DEBUG)
+        std::cout << "\n:OFFSETTING: \n\n";
     util::debug_print(str, size);
 
     // move string so str[0] is the last character before first character
@@ -79,7 +88,7 @@ void reverse_string(char *str, const int size)
 
 int main()
 {
-    constexpr int SIZE = 11;
+    constexpr int SIZE = DEBUG ? 11 : 51; // one extra for NULL byte
     char *str = new char[SIZE];
 
     std::cout << "Enter a string (max " << SIZE - 1 << " chars): ";
@@ -87,8 +96,8 @@ int main()
 
     reverse_string(str, SIZE);
 
-    std::cout << str;
-    delete str;
+    std::cout << "Your string is reverse is: " << str << "\n\n";
+    delete[] str;
 
     return 0;
 }
